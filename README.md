@@ -176,10 +176,10 @@ Branch **A** has the highest aggregate sales among all other branches
 ### **2.4 To Check Most popular payment methods being used 
 ```
 sns.countplot(df['Payment'])
-````
+```
 ------------------------------------Graph for e payments--------------------------
 To Find the value of each payment method
-````
+```
 df['Payment'].value_counts()
 ```
 Ewallet        345
