@@ -64,7 +64,7 @@ import seaborn as sns
 df = pd.read_csv('supermarket_sales.csv')
 df.head(10)
 ```
---------------------------------------------------datset preview for first 10 rows--------------------------------
+<img src="https://user-images.githubusercontent.com/102774633/230661228-31757942-71ca-4067-ad88-5441a4c42728.png" width="500" height="300">
 ```
 df.columns
 ```
@@ -128,13 +128,13 @@ df.dtypes
 df.set_index('Date',inplace = True)
 df.head()
 ````
--------------------------------------------------dataset preview part -2----------------------
+<img src="https://user-images.githubusercontent.com/102774633/230660903-d4d4d2f4-378a-4756-acb3-1e270ede5271.png" width="500" height="300">
 ### 1.4 To Check summary statistics
 
 ```
 df.describe()
 ```
---------------------------------------------dataset prevew part-3
+<img src="https://user-images.githubusercontent.com/102774633/230661441-3c08a519-236c-4029-b05b-2fe4ad582bb7.png" width="500" height="300">
 
 ## _2 - Univariate Analysis_
 ### **2.1 To check distribution of customer Ratings**
@@ -145,13 +145,14 @@ plt.axvline(x = np.percentile(df['Rating'],25), c = 'green', ls ='--', label = '
 plt.axvline(x = np.percentile(df['Rating'],75), c = 'green', ls ='--', label = '--')
 plt.legend()
 ```
----------------------------------------Distribution Graph----------------------                                                                                      
+<img src="https://user-images.githubusercontent.com/102774633/230661556-b5f8e3f4-6584-447a-8122-4689aa349f6c.png" width="500" height="300">                                                                                
 The customer rating distribution is somewhat uniform in distribution and the plot is not skewed towards either end.
 ### **2.2 To Plot histograms for indvidual categorical value**
 ```
 df.hist(figsize = (10,10))
 ```
--------------------------------ALL histograms--------------------------------------                                                                                   
+
+<img src="https://user-images.githubusercontent.com/102774633/230661736-5f0bff5a-7872-477a-9917-ca0f910e65b7.png" width="500" height="300">                                                                       
 **Highlights **-     
 Tax, Gross income, COGS and Total histogram is right skewed with the distribution.
 Gross Margin plot shows a single line that implies, gross margin is constant throughout
@@ -160,7 +161,7 @@ Gross Margin plot shows a single line that implies, gross margin is constant thr
  ```
  sns.countplot(df['Branch'])
  ```
- ------------------------Graph for ABC-------------------                                                                                                    
+<img src="https://user-images.githubusercontent.com/102774633/230661558-185eccfe-fa0a-40d4-89a3-7ab027dd18a5.png" width="500" height="300">                                                                                                 
  ```
  df['Branch'].value_counts()
  ```
@@ -175,7 +176,7 @@ Branch **A** has the highest aggregate sales among all other branches
 ```
 sns.countplot(df['Payment'])
 ```
-------------------------------------Graph for e payments--------------------------                                                                               
+<img src="https://user-images.githubusercontent.com/102774633/230661560-51f62675-f029-4c27-ab41-8ea2a754b99d.png" width="500" height="300">                                                                       
 To Find the value of each payment method
 ```
 df['Payment'].value_counts()
