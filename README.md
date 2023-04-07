@@ -39,9 +39,9 @@ EDA for a superstore data in different locations and analyzing their respective 
 
    **COGS:** Cost of goods sold
 
-   **Gross margin percentage:** Gross margin percentage
+   **Gross margin percentage:** Gross margin percentage                                                                                                                 
 
-   **Gross income:** Gross income
+   **Gross income:** Gross income              
 
    **Rating:** Customer stratification rating on their overall shopping experience (On a scale of 1 to 10)
    
@@ -51,15 +51,13 @@ EDA for a superstore data in different locations and analyzing their respective 
 **Pandas –** Data manipulation library        
 **NumPy -** scientific computing library      
 **Matplotlib** – Data visualization library     
-**Calmap -** heat map library    
-**Pandas profiling library**   
+ 
 ```
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import calmap
-from pandas_profiling import profileReport
+
 ```
 ### 1.2 Importing & Previewing Dataset
 ```
@@ -147,22 +145,22 @@ plt.axvline(x = np.percentile(df['Rating'],25), c = 'green', ls ='--', label = '
 plt.axvline(x = np.percentile(df['Rating'],75), c = 'green', ls ='--', label = '--')
 plt.legend()
 ```
----------------------------------------Distribution Graph----------------------
+---------------------------------------Distribution Graph----------------------                                                                                      
 The customer rating distribution is somewhat uniform in distribution and the plot is not skewed towards either end.
 ### **2.2 To Plot histograms for indvidual categorical value**
 ```
 df.hist(figsize = (10,10))
 ```
--------------------------------ALL histograms--------------------------------------
+-------------------------------ALL histograms--------------------------------------                                                                                   
 **Highlights **-     
 Tax, Gross income, COGS and Total histogram is right skewed with the distribution.
 Gross Margin plot shows a single line that implies, gross margin is constant throughout
 
-### **2.3 To check Aggregate sales for each branch
+### **2.3 To check Aggregate sales for each branch**
  ```
  sns.countplot(df['Branch'])
  ```
- ------------------------Graph for ABC-------------------
+ ------------------------Graph for ABC-------------------                                                                                                    
  ```
  df['Branch'].value_counts()
  ```
@@ -170,26 +168,53 @@ A      340
 B      332   
 C      328   
 
-Highlights -                                  
+**Highlights** -                                  
 Branch **A** has the highest aggregate sales among all other branches
 
-### **2.4 To Check Most popular payment methods being used 
+### **2.4 To Check Most popular payment methods being used**
 ```
 sns.countplot(df['Payment'])
 ```
-------------------------------------Graph for e payments--------------------------
+------------------------------------Graph for e payments--------------------------                                                                               
 To Find the value of each payment method
 ```
 df['Payment'].value_counts()
 ```
-Ewallet        345
-Cash           344
-Credit card    311
-Name: Payment, dtype: int64
+Ewallet        345                                                                                                                                                     
+Cash           344                                                                                                                                                  
+Credit card    311                                                                                                                                               
+Name: Payment, dtype: int64                                                                                                                                        
 
-Highlight -                                          
+**Highlight** -                                          
 Ewallet is the most popular mode of payment 
 
 ## _3 - Bivariate Analysis_
-## _4 - Dealing With Duplicate Rows and Missing Values_
+### **3.1 To Check relationship between gross income and customer rating**
+```
+sns.regplot(df['Rating'],df['gross income'])
+```
+-------------------------------------graph for scatterplot--------------------                                                                                        
+**Highlight** -
+The trendline on the scatterplot plot is **flat** therefore, no relationship exists between gross income and customer rating
 
+**3.2 To Check relationship between Branch and customer rating**
+```
+sns.boxplot(x = df['Branch'],y = df['gross income'])
+```
+-----------------------------------graph for boxplot------------------------------                                                                                   
+**Highlight** -
+The boxplot graph between Branch and customer rating doesn't show any positive relationship.
+
+
+# _**5 Correlation Analysis**_
+### **5.1 To check the correlation between all the catogrical variables in the data set with correlation matrx**
+```
+np.round(df.corr(),2)
+```
+---------------------------------------Matrix for correlation-----------------------
+### **5.2 To check the correlation between all the catogrical variables in the data set with correlation Heatmap**
+```
+sns.heatmap(np.round(df.corr(),2),annot = True)
+```
+-------------------------------Heatmap ------------------
+```
