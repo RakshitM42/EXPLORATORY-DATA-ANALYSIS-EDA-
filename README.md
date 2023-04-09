@@ -145,101 +145,8 @@ df.describe()
 ```
 <img src="https://user-images.githubusercontent.com/102774633/230661441-3c08a519-236c-4029-b05b-2fe4ad582bb7.png" width="900" height="300">
 
-## _2 - Univariate Analysis_
-### **2.1 To check distribution of customer Ratings**
-```
-sns.distplot(df['Rating'])
-plt.axvline(x = np.mean(df['Rating']), c = 'red' ,ls ='--', label = 'mean')
-plt.axvline(x = np.percentile(df['Rating'],25), c = 'green', ls ='--', label = '25-75th percentile')
-plt.axvline(x = np.percentile(df['Rating'],75), c = 'green', ls ='--', label = '--')
-plt.legend()
-```
-<img src="https://user-images.githubusercontent.com/102774633/230661556-b5f8e3f4-6584-447a-8122-4689aa349f6c.png" width="500" height="300">     
-
-The customer rating distribution is somewhat uniform in distribution and the plot is not skewed towards either end.
-
-### **2.2 To Plot histograms for indvidual categorical value**
-
-```
-df.hist(figsize = (10,10))
-```
-
-<img src="https://user-images.githubusercontent.com/102774633/230661736-5f0bff5a-7872-477a-9917-ca0f910e65b7.png" width="700" height="500">      
-
-
-
-#### Highlights -
-
-Tax, Gross income, COGS and Total histogram is right skewed with the distribution.
-Gross Margin plot shows a single line that implies, gross margin is constant throughout
-
-### **2.3 To check Aggregate sales for each branch** 
-
-
- ```
- sns.countplot(df['Branch'])
- ```
- 
-<img src="https://user-images.githubusercontent.com/102774633/230661558-185eccfe-fa0a-40d4-89a3-7ab027dd18a5.png" width="500" height="300">     
-
- ```
- df['Branch'].value_counts()
- 
- ```
-A      340                                                                                                                                                             
-B      332                                                                                                                                                             
-C      328                                                                                                                                                             
-
-**Highlights** -                                                        
-Branch **A** has the highest aggregate sales among all other branches
-
-### **2.4 To Check Most popular payment methods being used**
-
-```
-sns.countplot(df['Payment'])
-```
-<img src="https://user-images.githubusercontent.com/102774633/230661560-51f62675-f029-4c27-ab41-8ea2a754b99d.png" width="500" height="300">    
-
-To Find the value of each payment method
-
-```
-df['Payment'].value_counts()
-
-```
-Ewallet  -             345                                                                                                                                                                                             
-Cash     -             344                                                                                                                                                                                                   
-Credit card   -        311                                                                                                                                                                                             
-Name: Payment, dtype: int64                                                                                                                                        
-
-**Highlight** -                                          
-Ewallet is the most popular mode of payment 
-
-## _3 - Bivariate Analysis_
-
-### **3.1 To Check relationship between gross income and customer rating**
-
-```
-sns.regplot(df['Rating'],df['gross income'])
-```
-
-<img src="https://user-images.githubusercontent.com/102774633/230692504-74b84ba8-a076-4cd4-bfbe-e786da8e148c.png" width="500" height="300">           
-
- **Highlight** -                                                                                                                                             
-The trendline on the scatterplot plot is **flat** therefore, no relationship exists between gross income and customer rating
-
-**3.2 To Check relationship between Branch and customer rating**
-
-```
-sns.boxplot(x = df['Branch'],y = df['gross income'])
-```
-
-<img src="https://user-images.githubusercontent.com/102774633/230692566-8c1eed59-4f6b-47fc-ab0a-d851e6b39733.png" width="500" height="300">           
-
-**Highlight** -                                                                                                                                  
-The boxplot graph between Branch and customer rating doesn't show any positive relationship.
-
-## _4 - Duplicates Rows and Missing Values_
-### **4.1 Duplicates**
+## _2 - Duplicates Rows and Missing Values_
+### **2.1 Duplicates**
 #### To Check for duplicates in dataset
 ```
 df.duplicated()
@@ -258,7 +165,7 @@ Date
 2019-02-18    False                                                                                                                                                      Length: 1000, dtype: bool    
 #### No Duplicates were found in the dataset
 
-### **4.2 Missing/Null values**
+### **2.2 Missing/Null values**
 #### To Check for Missing/Null in dataset
 
 ```
@@ -291,6 +198,101 @@ sns.heatmap(df.isnull(),cbar = False)
 
 #### No Null/Missing values were found in the dataset.
 
+## _3 - Univariate Analysis_
+### **3.1 To check distribution of customer Ratings**
+```
+sns.distplot(df['Rating'])
+plt.axvline(x = np.mean(df['Rating']), c = 'red' ,ls ='--', label = 'mean')
+plt.axvline(x = np.percentile(df['Rating'],25), c = 'green', ls ='--', label = '25-75th percentile')
+plt.axvline(x = np.percentile(df['Rating'],75), c = 'green', ls ='--', label = '--')
+plt.legend()
+```
+<img src="https://user-images.githubusercontent.com/102774633/230661556-b5f8e3f4-6584-447a-8122-4689aa349f6c.png" width="500" height="300">     
+
+The customer rating distribution is somewhat uniform in distribution and the plot is not skewed towards either end.
+
+### **3.2 To Plot histograms for indvidual categorical value**
+
+```
+df.hist(figsize = (10,10))
+```
+
+<img src="https://user-images.githubusercontent.com/102774633/230661736-5f0bff5a-7872-477a-9917-ca0f910e65b7.png" width="700" height="500">      
+
+
+
+#### Highlights -
+
+Tax, Gross income, COGS and Total histogram is right skewed with the distribution.
+Gross Margin plot shows a single line that implies, gross margin is constant throughout
+
+### **3.3 To check Aggregate sales for each branch** 
+
+
+ ```
+ sns.countplot(df['Branch'])
+ ```
+ 
+<img src="https://user-images.githubusercontent.com/102774633/230661558-185eccfe-fa0a-40d4-89a3-7ab027dd18a5.png" width="500" height="300">     
+
+ ```
+ df['Branch'].value_counts()
+ 
+ ```
+A      340                                                                                                                                                             
+B      332                                                                                                                                                             
+C      328                                                                                                                                                             
+
+**Highlights** -                                                        
+Branch **A** has the highest aggregate sales among all other branches
+
+### **3.4 To Check Most popular payment methods being used**
+
+```
+sns.countplot(df['Payment'])
+```
+<img src="https://user-images.githubusercontent.com/102774633/230661560-51f62675-f029-4c27-ab41-8ea2a754b99d.png" width="500" height="300">    
+
+To Find the value of each payment method
+
+```
+df['Payment'].value_counts()
+
+```
+Ewallet  -             345                                                                                                                                                                                             
+Cash     -             344                                                                                                                                                                                                   
+Credit card   -        311                                                                                                                                                                                             
+Name: Payment, dtype: int64                                                                                                                                        
+
+**Highlight** -                                          
+Ewallet is the most popular mode of payment 
+
+## _4 - Bivariate Analysis_
+
+### **4.1 To Check relationship between gross income and customer rating**
+
+```
+sns.regplot(df['Rating'],df['gross income'])
+```
+
+<img src="https://user-images.githubusercontent.com/102774633/230692504-74b84ba8-a076-4cd4-bfbe-e786da8e148c.png" width="500" height="300">           
+
+ **Highlight** -                                                                                                                                             
+The trendline on the scatterplot plot is **flat** therefore, no relationship exists between gross income and customer rating
+
+**4.2 To Check relationship between Branch and customer rating**
+
+```
+sns.boxplot(x = df['Branch'],y = df['gross income'])
+```
+
+<img src="https://user-images.githubusercontent.com/102774633/230692566-8c1eed59-4f6b-47fc-ab0a-d851e6b39733.png" width="500" height="300">           
+
+**Highlight** -                                                                                                                                  
+The boxplot graph between Branch and customer rating doesn't show any positive relationship.
+
+
+
 # _**5 - Correlation Analysis**_
 ### **5.1 To check the correlation between all the catogrical variables in the data set with correlation matrx**
 ```
@@ -303,4 +305,25 @@ np.round(df.corr(),2)
 sns.heatmap(np.round(df.corr(),2),annot = True)
 ```
 <img src="https://user-images.githubusercontent.com/102774633/230692670-c8e6139c-4777-42de-9034-f0137e6103e8.png" width="700" height="500">
+
+**Highlights** -
+
+_**Strong Positive Linear Correlation**_ 
+
+'Tax' and 'Total'                                                                                   
+'COGS' and 'Tax'                                                                                   
+'Gross Income' and 'Tax'                                                                                   
+'Gross income' and 'COGS'                                                                                   
+'Gross income' and 'Total'                                                                                   
+
+
+
+
+_**Moderately Positive Linear Correlation**_
+
+'Tax' and 'Quantity'                                                                                   
+'Total and 'Quantity'                                                                                   
+'COGS' and 'Quantity'                                                                                   
+'Gross Income' and 'Quantity'                                                                                   
+
 
